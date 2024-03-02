@@ -6,10 +6,10 @@ from properties import *
 def splitRow(row):
     tabSplitRow = row.split("\t")
     if tabSplitRow[2][-4:] == "NFIN": return None
-    return f"{tabSplitRow[0]}\t{tabSplitRow[2].replace("V|V","V").replace("|",";")}\t{tabSplitRow[1]}"
+    return f"{tabSplitRow[0]}\t{tabSplitRow[2].replace('V|V','V').replace('|',';')}\t{tabSplitRow[1]}"
 
 def convertFile(lang,segmentationsFolder):
-    if f"{lang}.total" not in os.listdir(SEGMENTATIONS_FOLDER):
+    if f"{lang}.total" not in os.listdir(segmentationsFolder):
         print("Generating {lang}.total")
         with open(f"{segmentationsFolder}/{lang}.segmentations", encoding="UTF-8") as f:
             segmentations = f.read()
