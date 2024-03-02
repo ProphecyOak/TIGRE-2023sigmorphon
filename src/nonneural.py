@@ -11,6 +11,8 @@ Last Update: 22/03/2021
 import sys, os, getopt, re
 from functools import wraps
 from glob import glob
+import argparse
+from properties import *
 
 
 def hamming(s,t):
@@ -159,29 +161,8 @@ def numtrailingsyms(s, symbol):
 ###############################################################################
 
 
-def main(argv):
-    options, remainder = getopt.gnu_getopt(argv[1:], 'tohp:', ['test','output','help','path='])
-    TEST, OUTPUT, HELP, path = False,False, False, '../SharedTaskData/'
-    for opt, arg in options:
-        if opt in ('-o', '--output'):
-            OUTPUT = True
-        if opt in ('-t', '--test'):
-            TEST = True
-        if opt in ('-h', '--help'):
-            HELP = True
-        if opt in ('-p', '--path'):
-            path = arg
-
-    if HELP:
-            print("\n*** Baseline for the SIGMORPHON 2020 shared task ***\n")
-            print("By default, the program runs all languages only evaluating accuracy.")
-            print("To create output files, use -o")
-            print("The training and dev-data are assumed to live in ./part1/development_languages/")
-            print("Options:")
-            print(" -o         create output files with guesses (and don't just evaluate)")
-            print(" -t         evaluate on test instead of dev")
-            print(" -p [path]  data files path. Default is ../data/")
-            quit()
+def main(parsedArgs):
+    TEST, OUTPUT, path = parsedArgs.test, parsedArgs.out, parsedArgs.path+"/"
 
     totalavg, numlang = 0.0, 0
     for lang in [os.path.splitext(d)[0] for d in os.listdir(path) if '.trn' in d]:
@@ -259,4 +240,18 @@ def main(argv):
 
 
 if __name__ == "__main__":
-    main(sys.argv)
+    parser = argparse.ArgumentParser("Nonneural.py")
+    parser.add_argument("-p","--path",
+                        dest="path",
+                        nargs="?",
+                        default=SHARED_TASK_DATA_FOLDER,
+                        help="Path to folder with the .trn, .dev, and .tst files.")
+    parser.add_argument("-t","--test",
+                        dest="test",
+                        action="store_true",
+                        help="Uses the .tst split instead of the .dev split.")
+    parser.add_argument("-o","--out",
+                        dest="out",
+                        action="store_true",
+                        help="Creates output files.")
+    main(parser.parse_args())

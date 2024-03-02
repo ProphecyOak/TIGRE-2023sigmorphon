@@ -1,8 +1,11 @@
 import sys
 import re
+import argparse
+from properties import *
 
-def sortOutErrors(fileToCheck="test", sortFunction=lambda x: x[0], language="fra"):
-    with open(f"../NeuralTransducerOutput/{language}.decode.{fileToCheck}.tsv") as f:
+def sortOutErrors(test, sortFunction, language, outputFolder, dataFolder, errorFolder):
+    fileToCheck = "test" if test else "dev"
+    with open(f"{outputFolder}/{language}.decode.{fileToCheck}.tsv") as f:
         contents = f.read()
 
     lines = contents.strip().split("\n")
@@ -12,7 +15,7 @@ def sortOutErrors(fileToCheck="test", sortFunction=lambda x: x[0], language="fra
 
     errorColumns = list(filter(lambda x: x[3] != '0', columns))
     if fileToCheck == "test": fileToCheck = "tst"  #Because for whatever reason, neural_transducer doesnt use same extension formatting :/
-    with open(f"../SharedTaskData/{language}.{fileToCheck}") as dat, open(f"../NeuralTransducerErrors/errors.{language}.{fileToCheck}.tsv","w") as e, open(f"../NeuralTransducerErrors/unexpectedForms.{language}.{fileToCheck}.tsv","w") as u:
+    with open(f"{dataFolder}/{language}.{fileToCheck}") as dat, open(f"{errorFolder}/errors.{language}.{fileToCheck}.tsv","w") as e, open(f"{errorFolder}/unexpectedForms.{language}.{fileToCheck}.tsv","w") as u:
         lemmaDict = {}
         e.write("lemma\t"+lines[0]+"\n")
         u.write(lines[0]+"\n")
@@ -30,8 +33,53 @@ def sortOutErrors(fileToCheck="test", sortFunction=lambda x: x[0], language="fra
         for line in reducedErrorColumns:
             if len(line) == 5: e.write("\t".join(line)+"\n")
 
-sortByDistance = lambda x: -1*int(x[4])
-sortByLemma = lambda x: x[0]
+sortFunctions = {
+    "distance" : lambda x: -1*int(x[4]),
+    "lemma" : lambda x: x[0]
+}
+
+def main(parsedArgs):
+    if parsedArgs.all:
+        #Loop through languages like nonneural.py does
+        print("This option is not yet implemented")
+    else:
+        sortOutErrors(parsedArgs.test, sortFunctions[parsedArgs.sortKey], parsedArgs.lang, parsedArgs.path, parsedArgs.original, parsedArgs.dest)
 
 if __name__ == "__main__":
-    sortOutErrors("test", sortByLemma)
+    parser = argparse.ArgumentParser("catalogNeuralErrors.py")
+    parser.add_argument("-p","--path",
+                        dest="path",
+                        nargs="?",
+                        default=NEURAL_OUTPUT_FOLDER,
+                        help="Path to folder with the neuraltransducer output files.")
+    parser.add_argument("-d","--dest",
+                        dest="dest",
+                        nargs="?",
+                        default=NEURAL_ERRORS_FOLDER,
+                        help="Path to destination folder for error catalog.")
+    parser.add_argument("-o","--original",
+                        dest="original",
+                        nargs="?",
+                        default=SHARED_TASK_DATA_FOLDER,
+                        help="Path to folder with original splits to grab lemmas from.")
+    parser.add_argument("-t","--test",
+                        dest="test",
+                        action="store_true",
+                        help="Uses the .tst split instead of the .dev split.")
+    parser.add_argument("-s","--sort",
+                        dest="sortKey",
+                        nargs="?",
+                        default="lemma",
+                        choices=list(sortFunctions.keys()),
+                        help="Sort method for the output file.")
+    langGroup = parser.add_mutually_exclusive_group()
+    langGroup.add_argument("-l","--lang",
+                        dest="lang",
+                        nargs="?",
+                        default="fra",
+                        help="Language to generate splits from.")
+    langGroup.add_argument("-a","--all",
+                        dest="all",
+                        action="store_true",
+                        help="Not yet implemented: Runs on all languages found in the segmentations folder.")
+    main(parser.parse_args())
