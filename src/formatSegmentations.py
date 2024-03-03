@@ -8,8 +8,8 @@ def splitRow(row):
     if tabSplitRow[2][-4:] == "NFIN": return None
     return f"{tabSplitRow[0]}\t{tabSplitRow[2].replace('V|V','V').replace('|',';')}\t{tabSplitRow[1]}"
 
-def convertFile(lang,segmentationsFolder):
-    if f"{lang}.total" not in os.listdir(segmentationsFolder):
+def convertFile(lang,segmentationsFolder, forced):
+    if forced or f"{lang}.total" not in os.listdir(segmentationsFolder):
         print("Generating {lang}.total")
         with open(f"{segmentationsFolder}/{lang}.segmentations", encoding="UTF-8") as f:
             segmentations = f.read()
@@ -29,7 +29,10 @@ def generateSplit(lang, segmentationsFolder, splitsFolder):
     with open(f"{splitsFolder}/{lang}.tst", encoding="UTF-8") as tst:
         tstSet = set([y[0] for y in [x.split("\t") for x in tst.read().strip().split("\n")]])
 
-    with open(f"{segmentationsFolder}/{lang}.total", encoding="UTF-8") as tot, open(f"{segmentationsFolder}/{lang}.trn", "w", encoding="UTF-8") as trn, open(f"{segmentationsFolder}/{lang}.dev", "w", encoding="UTF-8") as dev, open(f"{segmentationsFolder}/{lang}.tst", "w", encoding="UTF-8") as tst:
+    with (open(f"{segmentationsFolder}/{lang}.total", encoding="UTF-8") as tot,
+          open(f"{segmentationsFolder}/{lang}.trn", "w", encoding="UTF-8") as trn,
+          open(f"{segmentationsFolder}/{lang}.dev", "w", encoding="UTF-8") as dev,
+          open(f"{segmentationsFolder}/{lang}.tst", "w", encoding="UTF-8") as tst):
         for x in tot.read().strip().split("\n"):
             lemma = x.split("\t")[0]
             if lemma in trnSet: trn.write(x+"\n")
@@ -41,7 +44,7 @@ def main(parsedArgs):
         #Loop through languages like nonneural.py does
         print("This option is not yet implemented")
     else:
-        convertFile(parsedArgs.lang, parsedArgs.path)
+        convertFile(parsedArgs.lang, parsedArgs.path, parsedArgs.force)
         generateSplit(parsedArgs.lang, parsedArgs.path, parsedArgs.original)
 
 if __name__ == "__main__":
@@ -56,6 +59,10 @@ if __name__ == "__main__":
                         nargs="?",
                         default=SHARED_TASK_DATA_FOLDER,
                         help="Path to folder with original splits to model off of.")
+    parser.add_argument("-f","--force",
+                        dest="force",
+                        action="store_true",
+                        help="Force the regeneration of the .total file.")
     langGroup = parser.add_mutually_exclusive_group()
     langGroup.add_argument("-l","--lang",
                         dest="lang",

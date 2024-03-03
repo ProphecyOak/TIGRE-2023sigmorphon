@@ -15,7 +15,9 @@ def sortOutErrors(test, sortFunction, language, outputFolder, dataFolder, errorF
 
     errorColumns = list(filter(lambda x: x[3] != '0', columns))
     if fileToCheck == "test": fileToCheck = "tst"  #Because for whatever reason, neural_transducer doesnt use same extension formatting :/
-    with open(f"{dataFolder}/{language}.{fileToCheck}") as dat, open(f"{errorFolder}/errors.{language}.{fileToCheck}.tsv","w") as e, open(f"{errorFolder}/unexpectedForms.{language}.{fileToCheck}.tsv","w") as u:
+    with (open(f"{dataFolder}/{language}.{fileToCheck}") as dat,
+          open(f"{errorFolder}/errors.{language}.{fileToCheck}.tsv","w") as e,
+          open(f"{errorFolder}/unexpectedForms.{language}.{fileToCheck}.tsv","w") as u):
         lemmaDict = {}
         e.write("lemma\t"+lines[0]+"\n")
         u.write(lines[0]+"\n")
