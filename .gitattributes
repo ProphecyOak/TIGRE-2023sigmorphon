@@ -1,6 +1,2 @@
-*.py linguist-language=Python
-CounterSorterOutput/** linguist-generated=true
-NeuralTransducerErrors/** linguist-generated=true
-NeuralTransducerOutput/** linguist-generated=true
-SegmentationsSplits/** linguist-generated=true
-SharedTaskData/** linguist-generated=true
+* linguist-vendored
+*.py linguist-vendored=false
