@@ -1,5 +1,9 @@
 **/*.pyc
 **/__pycache__
-NeuralTransducerErrors/*
-SegmentationsSplits/!(*.segmentations)
-SharedTaskData/!(*.@(trn|dev|tst))
+/NeuralTransducerErrors/*
+/SegmentationsSplits/*.trn
+/SegmentationsSplits/*.dev
+/SegmentationsSplits/*.tst
+/SegmentationsSplits/*.total
+/SharedTaskData/*out
+/SharedTaskData/*errors
