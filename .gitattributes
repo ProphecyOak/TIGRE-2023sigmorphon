@@ -1,5 +1,9 @@
 *.py linguist-language=Python
-SharedTaskData/*.errors* linguist-generated=true
-SharedTaskData/*.out* linguist-generated=true
-SegmentationsSplits/!*.segmentations linguist-generated=true
+SharedTaskData/*.errors linguist-generated=true
+SharedTaskData/*.out linguist-generated=true
+SegmentationsSplits/*.total linguist-generated=true
+SegmentationsSplits/*.trn linguist-generated=true
+SegmentationsSplits/*.dev linguist-generated=true
+SegmentationsSplits/*.tst linguist-generated=true
 NeuralTransducerErrors/* linguist-generated=true
+CounterSorterOutput/* linguist-generated=true
