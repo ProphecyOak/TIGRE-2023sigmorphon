@@ -8,7 +8,7 @@ def handleFile(sort, fileToSort, fileDest, column=0, sortFunction=lambda x,y: x[
     with open(fileToSort, encoding="UTF-8") as f:
         lines = [x.split("\t") for x in f.read().strip().split("\n")]
     lines.sort(key=lambda row: sortFunction(row,column),reverse=reverse)
-    with open(fileDest, "w") as w:
+    with open(fileDest, "w", encoding="UTF-8") as w:
         if sort:
             for x in lines: writeLineTSV(w,x)
             return
