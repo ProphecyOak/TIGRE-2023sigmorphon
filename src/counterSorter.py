@@ -28,7 +28,7 @@ def main(parsedArgs):
     counted = parsedArgs.operation in ["c","count"]
     handleFile(not counted,
                parsedArgs.file,
-               parsedArgs.dest if parsedArgs.dest != None else parsedArgs.file.replace(".tsv","")+f'.{["sorted","counted"][counted]}.tsv',
+               parsedArgs.dest if parsedArgs.dest != None else os.path.join(COUNTER_SORTER_OUTPUT_FOLDER,os.path.basename(parsedArgs.file)).replace(".tsv","")+f'.{["sorted","counted"][counted]}.tsv',
                parsedArgs.column,
                SORT_FUNCTIONS[parsedArgs.method],
                parsedArgs.reverse,

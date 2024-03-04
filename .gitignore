@@ -7,3 +7,4 @@
 /SegmentationsSplits/*.total
 /SharedTaskData/*out
 /SharedTaskData/*errors
+/CounterSorterOutput/**
