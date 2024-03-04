@@ -40,8 +40,10 @@ if __name__ == "__main__":
     parser.add_argument("operation",
                         choices=["s","sort","c","count"],
                         help="Operation to carry out on the file.")
-    parser.add_argument("column",
+    parser.add_argument("-c","--column",
+                        dest="column",
                         type=int,
+                        default=0,
                         help="Column to count or sort by.")
     parser.add_argument("-d", "--dest",
                         dest="dest",
