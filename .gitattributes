@@ -1,1 +1,5 @@
 *.py linguist-language=Python
+SharedTaskData/*.errors* linguist-generated=true
+SharedTaskData/*.out* linguist-generated=true
+SegmentationsSplits/!*.segmentations linguist-generated=true
+NeuralTransducerErrors/* linguist-generated=true
