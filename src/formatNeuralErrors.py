@@ -3,7 +3,7 @@ import re
 import argparse
 from properties import *
 
-def sortOutErrors(test, sortFunction, language, outputFolder, dataFolder, errorFolder):
+def sortOutErrors(test, language, outputFolder, dataFolder, errorFolder):
     fileToCheck = "test" if test else "dev"
     with open(f"{outputFolder}/{language}.decode.{fileToCheck}.tsv") as f:
         contents = f.read()
@@ -31,21 +31,16 @@ def sortOutErrors(test, sortFunction, language, outputFolder, dataFolder, errorF
                 reducedErrorColumns.append(line)
             except:
                 u.write("\t".join(line)+"\n")
-        reducedErrorColumns.sort(key=sortFunction)
+        reducedErrorColumns.sort(key=lambda x: x[0])
         for line in reducedErrorColumns:
             if len(line) == 5: e.write("\t".join(line)+"\n")
-
-sortFunctions = {
-    "distance" : lambda x: -1*int(x[4]),
-    "lemma" : lambda x: x[0]
-}
 
 def main(parsedArgs):
     if parsedArgs.all:
         #Loop through languages like nonneural.py does
         print("This option is not yet implemented")
     else:
-        sortOutErrors(parsedArgs.test, sortFunctions[parsedArgs.sortKey], parsedArgs.lang, parsedArgs.path, parsedArgs.original, parsedArgs.dest)
+        sortOutErrors(parsedArgs.test, parsedArgs.lang, parsedArgs.path, parsedArgs.original, parsedArgs.dest)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("catalogNeuralErrors.py")
@@ -68,12 +63,6 @@ if __name__ == "__main__":
                         dest="test",
                         action="store_true",
                         help="Uses the .tst split instead of the .dev split.")
-    parser.add_argument("-s","--sort",
-                        dest="sortKey",
-                        nargs="?",
-                        default="lemma",
-                        choices=list(sortFunctions.keys()),
-                        help="Sort method for the output file.")
     langGroup = parser.add_mutually_exclusive_group()
     langGroup.add_argument("-l","--lang",
                         dest="lang",
