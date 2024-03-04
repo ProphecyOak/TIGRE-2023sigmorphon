@@ -1,2 +1,6 @@
 *.py linguist-language=Python
-!src/**
+CounterSorterOutput/** linguist-generated=true
+NeuralTransducerErrors/** linguist-generated=true
+NeuralTransducerOutput/** linguist-generated=true
+SegmentationsSplits/** linguist-generated=true
+SharedTaskData/** linguist-generated=true
