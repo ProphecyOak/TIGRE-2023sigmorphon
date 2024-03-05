@@ -56,7 +56,7 @@ Instructions on how to run the scripts, options in terms of data manipulation, a
 ### Necessary Libraries and Tools
 
 Libraries: sys, os, argparse, re, getopt, 
-Other libraries/tools that are helpful in viewing/manipulating this data: ... (MORE INFO NEEDED)
+Other libraries/tools that are helpful in viewing/manipulating this data: (MORE INFO NEEDED)
 
 ```bash
 # Example command to install prerequisites
