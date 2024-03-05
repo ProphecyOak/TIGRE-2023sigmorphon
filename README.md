@@ -24,8 +24,8 @@ Source code directory containing scripts for various operations such as error an
 ## Scripts Description
 
 Below is an overview of the scripts located in the `src` directory:
-[counterSorter.py](#counterSorter)
-[formatNeuralErrors.py](#formatNeuralErrors)
+- [counterSorter.py](#counterSorter)
+- [formatNeuralErrors.py](#formatNeuralErrors)
 
 <a name="counterSorter"></a>
 <details><summary><h3>counterSorter.py</h3></summary>
