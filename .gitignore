@@ -8,3 +8,6 @@
 /SharedTaskData/*out
 /SharedTaskData/*errors
 /CounterSorterOutput/**
+lemma_pages
+wiktionary_en_all_nopic_2024-01.zim
+tests.ipynb
