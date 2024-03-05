@@ -1,7 +1,7 @@
 **/*.pyc
 **/__pycache__
 /NeuralTransducerErrors/*
-!/NeuralTransducerErrors
+!/NeuralTransducerErrors/.gitkeep
 /SegmentationsSplits/*.trn
 /SegmentationsSplits/*.dev
 /SegmentationsSplits/*.tst
