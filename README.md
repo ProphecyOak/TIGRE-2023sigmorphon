@@ -6,28 +6,38 @@ This project uses scripts designed to inflect lemmas based on morphosyntactic de
 
 The following are the folders found within the repository:
 
-- **NeuralTransducerErrors**
+- `NeuralTransducerErrors`
 Contains error files for neural transducer outputs. Example files include `errors.fra.dev.tsv.counted.tsv` for tracking counted errors. These files were created using scripts we authored independantly from the shared task files.
 
-- **NeuralTransducerOutput**
+- `NeuralTransducerOutput`
 Stores the output from the neural transducer. This includes files like `fra.decode.dev.tsv` and `fra.decode.test.tsv`. (LINK TO neural transducer repo and say it is the default output for the French after 800 epochs)
 
-- **SegmentationsSplits**
+- `SegmentationsSplits`
 Holds segmentation splits, such as `fra.segmentations`, as well as generates splits from '.segmentations' files. (LINK TO UNIMORPH REPO) 
 
-- **SharedTaskData**
+- `SharedTaskData`
 Includes data used for shared tasks, like development (`fra.dev`), training (`fra.trn`), and testing (`fra.tst`) splits.
 
-- **src**
+- `src`
 Source code directory containing scripts for various operations such as error analysis, data formatting, error counting, etc.
 
 ## Scripts Description
 
-Below is a brief overview of the scripts located in the `src` directory:
+Below is an overview of the scripts located in the `src` directory:
 
-### counterSorter.py: 
+<details><summary><h3>counterSorter.py</h3></summary>
+ 
+ >For a given file, either counts or sorts it and places the output in `CounterSorterOutput` by default.
+ >- If you are sorting, include an `s` or the word `sort` after the specified file.
+ >- If you are counting, include a `c` or the word `count` after the specified file.
+ >
+ >For either option, you may:
+ >- Specify a designated output file using the `-d` or `--dest` flag.
+ >- Specify a sorting function using the `-m` or `--method` flag and a key from the `SORT_FUNCTIONS` dictionary in `properties.py`.
+ >- Invert the sort direction using the `-r` or `--reverse` flag.
+ >- Ignore the header of the file using the `-s` or `--skip` flag and a number of lines to skip.
 
-A script for counting and sorting errors. (MORE INFO NEEDED)
+</details>
 
 ### formalNeuralErrors.py:
 
