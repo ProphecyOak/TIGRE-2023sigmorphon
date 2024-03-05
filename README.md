@@ -27,7 +27,8 @@ Below is an overview of the scripts located in the `src` directory:
 [counterSorter.py](#counterSorter)
 [formatNeuralErrors.py](#formatNeuralErrors)
 
-<details><summary><h3><a name="counterSorter"></a>counterSorter.py</h3></summary>
+<a name="counterSorter"></a>
+<details><summary><h3>counterSorter.py</h3></summary>
  
  >For a given file, either counts or sorts it and places the output in `CounterSorterOutput` by default.
  >- If you are sorting, include an `s` or the word `sort` after the specified file.
