@@ -1,6 +1,7 @@
 **/*.pyc
 **/__pycache__
 /NeuralTransducerErrors/*
+!/NeuralTransducerErrors/.gitkeep
 /SegmentationsSplits/*.trn
 /SegmentationsSplits/*.dev
 /SegmentationsSplits/*.tst
@@ -8,3 +9,6 @@
 /SharedTaskData/*out
 /SharedTaskData/*errors
 /CounterSorterOutput/**
+lemma_pages
+wiktionary_en_all_nopic_2024-01.zim
+tests.ipynb
