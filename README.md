@@ -24,11 +24,8 @@ Source code directory containing scripts for various operations such as error an
 ## Scripts Description
 
 Below is an overview of the scripts located in the `src` directory:
-- [counterSorter.py](#counterSorter)
-- [formatNeuralErrors.py](#formatNeuralErrors)
 
-<a name="counterSorter"></a>
-<details><summary>counterSorter.py</summary>
+<details><summary><code>counterSorter.py</code></summary>
  
  >For a given file, either counts or sorts it and places the output in `CounterSorterOutput` by default.
  >- If you are sorting, include an `s` or the word `sort` after the specified file.
@@ -42,33 +39,27 @@ Below is an overview of the scripts located in the `src` directory:
 
 </details>
 
-<a name="formatNeuralErrors"></a>
-<details><summary>formatNeuralErrors.py</summary>
+<details><summary><code>formatNeuralErrors.py</code></summary>
  
  > Analyzes formal errors in neural outputs. (MORE INFO NEEDED)
 </details>
 
-
-<a name="formatSegmentations"></a>
-<details><summary>formatSegmentations.py</summary>
+<details><summary><code>formatSegmentations.py</code></summary>
  
  > Processes `.segmentations` files from UniMorph, matching them with original shared task splits. Supports `-l` for specific languages and `-a` for all languages. This script converts segmentation files into a `.total` format, aligning with morphosyntactic features and original data formats, and creates new train, dev, and test splits according to the shared task data.
 </details>
 
-<a name="nonneural"></a>
-<details><summary>nonneural.py</summary>
+<details><summary><code>nonneural.py</code></summary>
  
  > Borrowed from the SIGMORPHON 2020 shared task, with tweaks in argument handling using the argparse module.
 </details>
 
-<a name="nonneuralErrorFinder"></a>
-<details><summary>nonneuralErrorFinder.py</summary>
+<details><summary><code>nonneuralErrorFinder.py</code></summary>
  
  > Dedicated to finding errors in non-neural system outputs. (MORE INFO NEEDED)
 </details>
 
-<a name="properties"></a>
-<details><summary>properties.py</summary>
+<details><summary><code>properties.py</code></summary>
  
  > Contains default paths and settings for the project. Note: comments might be helpful in describing contents.
 </details>
