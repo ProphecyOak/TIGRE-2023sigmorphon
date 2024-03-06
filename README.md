@@ -28,7 +28,7 @@ Below is an overview of the scripts located in the `src` directory:
 - [formatNeuralErrors.py](#formatNeuralErrors)
 
 <a name="counterSorter"></a>
-<details><summary><h3>counterSorter.py</h3></summary>
+<details><summary>counterSorter.py</summary>
  
  >For a given file, either counts or sorts it and places the output in `CounterSorterOutput` by default.
  >- If you are sorting, include an `s` or the word `sort` after the specified file.
@@ -43,26 +43,35 @@ Below is an overview of the scripts located in the `src` directory:
 </details>
 
 <a name="formatNeuralErrors"></a>
-### formatNeuralErrors.py:
+<details><summary>formatNeuralErrors.py</summary>
+ 
+ > Analyzes formal errors in neural outputs. (MORE INFO NEEDED)
+</details>
 
 
-Analyzes formal errors in neural outputs. (MORE INFO NEEDED)
+<a name="formatSegmentations"></a>
+<details><summary>formatSegmentations.py</summary>
+ 
+ > Processes `.segmentations` files from UniMorph, matching them with original shared task splits. Supports `-l` for specific languages and `-a` for all languages. This script converts segmentation files into a `.total` format, aligning with morphosyntactic features and original data formats, and creates new train, dev, and test splits according to the shared task data.
+</details>
 
-### formatSegmentations.py: 
+<a name="nonneural"></a>
+<details><summary>nonneural.py</summary>
+ 
+ > Borrowed from the SIGMORPHON 2020 shared task, with tweaks in argument handling using the argparse module.
+</details>
 
-Processes `.segmentations` files from UniMorph, matching them with original shared task splits. Supports `-l` for specific languages and `-a` for all languages. This script converts segmentation files into a `.total` format, aligning with morphosyntactic features and original data formats, and creates new train, dev, and test splits according to the shared task data.
+<a name="nonneuralErrorFinder"></a>
+<details><summary>nonneuralErrorFinder.py</summary>
+ 
+ > Dedicated to finding errors in non-neural system outputs. (MORE INFO NEEDED)
+</details>
 
-### nonneural.py:
-
- Borrowed from the SIGMORPHON 2020 shared task, with tweaks in argument handling using the argparse module.
-
-### nonneuralErrorFinder.py:
-
- Dedicated to finding errors in non-neural system outputs. (MORE INFO NEEDED)
-
-### properties.py:
-
- Contains default paths and settings for the project. Note: comments might be helpful in describing contents.
+<a name="properties"></a>
+<details><summary>properties.py</summary>
+ 
+ > Contains default paths and settings for the project. Note: comments might be helpful in describing contents.
+</details>
 
 ## Using this repository
 
