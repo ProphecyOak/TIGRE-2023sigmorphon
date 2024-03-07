@@ -10,7 +10,8 @@ def sortOutErrors(filepath, errorFolder):
     lines = contents.strip().split("\n")
     rows = []
     for line in lines[1:]:
-        rows.append(line.replace(" ","").split("\t"))
+        pred, tgt, loss, dist = line.split("\t")
+        rows.append([pred[::2], tgt, loss, dist])
 
     with open(f"{errorFolder}/{os.path.basename(filepath)}","w") as e:
           for row in rows: e.write("\t".join(row)+"\n")
