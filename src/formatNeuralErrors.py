@@ -13,7 +13,7 @@ def sortOutErrors(test, language, outputFolder, errorFolder):
     for line in lines[1:]:
         rows.append(line.replace(" ","").split("\t"))
 
-    with open(f"{errorFolder}/errors.{language}.{fileToCheck}.tsv","w") as e:
+    with open(f"{errorFolder}/{language}.{fileToCheck}.tsv","w") as e:
           for row in rows: e.write("\t".join(row)+"\n")
 
 def main(parsedArgs):
