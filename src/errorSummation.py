@@ -12,7 +12,8 @@ def main(parsedArgs):
             resultsByForm.append(line)
 
     ### Grabs target values from supplied files.
-    for fileI in range(0,len(parsedArgs.files)//4+3,4):
+    for fileI in range(0,len(parsedArgs.files)//3+2,3):
+        print(parsedArgs.files[fileI])
         predictedColumn, headerSkip = int(parsedArgs.files[fileI+1]), int(parsedArgs.files[fileI+2])
         headers.append(os.path.basename(parsedArgs.files[fileI]))
         with open(parsedArgs.files[fileI],encoding="UTF-8") as f:
@@ -31,6 +32,7 @@ def main(parsedArgs):
                 w.write("\t".join([str(x) for x in row])+"\n")
 
 if __name__ == "__main__":
+    print("Summing:")
     parser = argparse.ArgumentParser("errorSummation.py")
     parser.add_argument("files",
                         nargs="+",
@@ -51,3 +53,4 @@ if __name__ == "__main__":
                         action="store_true",
                         help="Includes correct rows as well.")
     main(parser.parse_args())
+    print()
