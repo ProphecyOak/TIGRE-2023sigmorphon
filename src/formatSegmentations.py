@@ -1,10 +1,9 @@
-import sys
-import os
+import sys, os, re
 import argparse
 from properties import *
 
 def splitRow(row):
-    tabSplitRow = row.split("\t")
+    tabSplitRow = re.sub(r"([0-9]);(.*?)\t", r"NOM(\1,\2)\t", row).split("\t")
     if tabSplitRow[2][-4:] == "NFIN": return None
     return f"{tabSplitRow[0]}\t{tabSplitRow[2].replace('V|V','V').replace('|',';')}\t{tabSplitRow[1]}"
 
