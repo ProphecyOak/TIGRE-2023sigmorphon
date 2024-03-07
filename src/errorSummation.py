@@ -20,7 +20,7 @@ def main(parsedArgs):
             rows = [x.split("\t") for x in f.read().strip().split("\n")][headerSkip:]
         for row,resultRow in zip(rows,resultsByForm):
             resultRow.append(row[predictedColumn] if row[predictedColumn] not in [resultRow[1],resultRow[2]] else "")
-        
+
     ### Writes all of the rows to the output file
     with open(parsedArgs.output, "w", encoding="UTF-8")  as w:
         w.write("\t".join([str(x) for x in headers])+"\n")

@@ -78,7 +78,13 @@ def main():
 
     midset, oldset, errset = set(), set(), set()
 
-    oldfile, midfile, errfile = open('fra.old', 'w'), open('fra.mid', 'w'), open('fra.err', 'w')
+    outdir = os.path.join('..','SharedTaskData','fra-info')
+    if not os.path.isdir(outdir):
+        os.makedirs(outdir)
+
+    oldfile = open(os.path.join(outdir, 'fra.old'), 'w', encoding='utf8')
+    midfile = open(os.path.join(outdir, 'fra.mid'), 'w', encoding='utf8')
+    errfile = open(os.path.join(outdir, 'fra.err'), 'w', encoding='utf8')
 
     for lem in tqdm(lemmas):
         langs = get_lemma_langs(lem, lempgs, target_lang='French')
