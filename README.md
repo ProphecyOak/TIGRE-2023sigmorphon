@@ -36,32 +36,53 @@ Below is an overview of the scripts located in the `src` directory:
  >- Specify a sorting function using the `-m` or `--method` flag and a key from the `SORT_FUNCTIONS` dictionary in `properties.py`.
  >- Invert the sort direction using the `-r` or `--reverse` flag.
  >- Ignore the header of the file using the `-s` or `--skip` flag and a number of lines to skip.
-
 </details>
 
 <details><summary><code>formatNeuralErrors.py</code></summary>
  
- > Analyzes formal errors in neural outputs. (MORE INFO NEEDED)
+ >Takes the output files placed in `NeuralTransducerOutput` and converts them to a format that is more human readable and is usable for `errorSummation.py` and places the new file into the `NeuralTransducerFormatted` folder. You may:
+ >- Specify a designated input directory using the `-p` or `--path` flag.
+ >- Specify a designated output directory using the `-d` or `--dest` flag.
+ >- Specify whether the outputs from the `.tst` splits instead of the `.dev` splits using the `-t` or `--test` flag.
+ >
+ >And either: 
+ >- Specify a language to convert using the `-l` or `--lang` flag with the UniMorph abbreviation.
+ >- ~~Run all files using the `-a` or `--all` flag.~~ \[Not Yet Implemented\]
 </details>
 
 <details><summary><code>formatSegmentations.py</code></summary>
  
- > Processes `.segmentations` files from UniMorph, matching them with original shared task splits. Supports `-l` for specific languages and `-a` for all languages. This script converts segmentation files into a `.total` format, aligning with morphosyntactic features and original data formats, and creates new train, dev, and test splits according to the shared task data.
+ >Takes the `.segmentations` files placed in `SegmentationsSplits` and converts them to match the shared task data format. It then uses the splits in `SharedTaskData` to create new splits in the same directory that have similar demographics but only include words in the `.segmentations` files. You may:
+ >- Specify a designated input directory for the `.segmentations` files using the `-p` or `--path` flag.
+ >- Specify a designated input directory for the original shared task splits using the `-o` or `--original` flag.
+ >- Force the recreation of the `.total` file using the `-f` or `--force` flag (Normally, if the `.total` file is present, it will skip that step).
+ >
+ >And either: 
+ >- Specify a language to convert using the `-l` or `--lang` flag with the UniMorph abbreviation.
+ >- ~~Run all files using the `-a` or `--all` flag.~~ \[Not Yet Implemented\]
 </details>
 
 <details><summary><code>nonneural.py</code></summary>
  
- > Borrowed from the SIGMORPHON 2020 shared task, with tweaks in argument handling using the argparse module.
-</details>
-
-<details><summary><code>nonneuralErrorFinder.py</code></summary>
- 
- > Dedicated to finding errors in non-neural system outputs. (MORE INFO NEEDED)
+ >This is the baseline `nonneural.py` taken from the [Sigmorphon 2023 Shared Task Repo](https://github.com/sigmorphon/2023InflectionST). It has been modified to use the argparse module. You may:
+ >- Specify a designated input directory using the `-p` or `--path` flag.
+ >- Run it on the test split using the `-t` or `--test` flag.
+ >- Turn on output file generation using the `-o` or `--out` flag (The output is placed in the input directory).
 </details>
 
 <details><summary><code>properties.py</code></summary>
  
- > Contains default paths and settings for the project. Note: comments might be helpful in describing contents.
+ >Contains default paths and settings for the project. The following properties are defined:
+ >- `SEGMENTATIONS_FOLDER = "../SegmentationsSplits"`
+ >- `SHARED_TASK_DATA_FOLDER = "../SharedTaskData"`
+ >- `NEURAL_OUTPUT_FOLDER = "../NeuralTransducerOutput"`
+ >- `NEURAL_ERRORS_FOLDER = "../NeuralTransducerFormatted"`
+ >- `COUNTER_SORTER_OUTPUT_FOLDER = "../CounterSorterOutput"`
+ >
+ >The following sort methods are defined for use with `counterSorter.py`:
+ >- `field` which sorts alphabetically.
+ >- `suffix` which sorts alphabetically from the end of the string.
+ >- `number` which sorts based on the number value of a column.
 </details>
 
 ## Using this repository
