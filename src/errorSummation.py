@@ -13,7 +13,7 @@ def main(parsedArgs):
 
     ### Grabs target values from supplied files.
     for fileI in range(0,len(parsedArgs.files)//4+3,4):
-        targetColumn, predictedColumn, headerSkip = int(parsedArgs.files[fileI+1]), int(parsedArgs.files[fileI+2]), int(parsedArgs.files[fileI+3])
+        predictedColumn, headerSkip = int(parsedArgs.files[fileI+1]), int(parsedArgs.files[fileI+2])
         headers.append(os.path.basename(parsedArgs.files[fileI]))
         with open(parsedArgs.files[fileI],encoding="UTF-8") as f:
             rows = [x.split("\t") for x in f.read().strip().split("\n")][headerSkip:]
