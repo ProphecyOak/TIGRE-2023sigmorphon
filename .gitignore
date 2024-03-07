@@ -1,10 +1,11 @@
 **/*.pyc
 **/__pycache__
-/NeuralTransducerErrors/*
-!/NeuralTransducerErrors/.gitkeep
+/NeuralTransducerFormatted/*
+!/NeuralTransducerFormatted/.gitkeep
 /SegmentationsSplits/*.trn
 /SegmentationsSplits/*.dev
 /SegmentationsSplits/*.tst
+/SegmentationsSplits/*.out
 /SegmentationsSplits/*.total
 /SharedTaskData/*out
 /SharedTaskData/*errors

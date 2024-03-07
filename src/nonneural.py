@@ -212,7 +212,7 @@ def main(parsedArgs):
         numcorrect = 0
         numguesses = 0
         if OUTPUT:
-            outfile = open(path + lang + ".out", "w", encoding='utf8')
+            outfile = open(path + lang + [".dev",".tst"][TEST] + ".out", "w", encoding='utf8')
         for l in devlines:
             lemma, msd, correct = l.split(u'\t')
 #                    lemma, msd, = l.split(u'\t')

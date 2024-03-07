@@ -16,7 +16,6 @@ def main(parsedArgs):
         targetColumn, predictedColumn, headerSkip = int(parsedArgs.files[fileI+1]), int(parsedArgs.files[fileI+2]), int(parsedArgs.files[fileI+3])
         headers.append(os.path.basename(parsedArgs.files[fileI]))
         with open(parsedArgs.files[fileI],encoding="UTF-8") as f:
-            print(parsedArgs.files[fileI])
             rows = [x.split("\t") for x in f.read().strip().split("\n")][headerSkip:]
         for row,resultRow in zip(rows,resultsByForm):
             resultRow.append(row[predictedColumn] if row[predictedColumn] not in [resultRow[1],resultRow[2]] else "")
