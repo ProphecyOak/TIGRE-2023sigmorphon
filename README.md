@@ -25,6 +25,11 @@ Source code directory containing scripts for various operations such as error an
 
 Below is an overview of the scripts located in the `src` directory:
 
+<details><summary><code>reproduce.sh</code></summary>
+ 
+ >Reproduces the data that was annotated for use in the paper.
+</details>
+
 <details><summary><code>errorSummation.py</code></summary>
  
  >Takes a set of output files and merges them together by form. Make sure that both files have all the same forms in the same order. You must list a number for the index for the column with the predicted form and the number of lines to skip for a header following each file. You may:
