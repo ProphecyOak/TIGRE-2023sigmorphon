@@ -25,17 +25,12 @@ Source code directory containing scripts for various operations such as error an
 
 Below is an overview of the scripts located in the `src` directory:
 
-<details><summary><code>counterSorter.py</code></summary>
+<details><summary><code>errorSummation.py</code></summary>
  
- >For a given file, either counts or sorts it and places the output in `CounterSorterOutput` by default.
- >- If you are sorting, include an `s` or the word `sort` after the specified file.
- >- If you are counting, include a `c` or the word `count` after the specified file.
- >
- >For either option, you may:
- >- Specify a designated output file using the `-d` or `--dest` flag.
- >- Specify a sorting function using the `-m` or `--method` flag and a key from the `SORT_FUNCTIONS` dictionary in `properties.py`.
- >- Invert the sort direction using the `-r` or `--reverse` flag.
- >- Ignore the header of the file using the `-s` or `--skip` flag and a number of lines to skip.
+ >Takes a set of output files and merges them together by form. Make sure that both files have all the same forms in the same order. You must list a number for the index for the column with the predicted form and the number of lines to skip for a header following each file. You may:
+ >- Specify the split to check your words against using the `-s` or `--split` flag.
+ >- Specify the output file using the `-o` or `--output` flag.
+ >- Include the universally correct forms in the results using the `-c` or `--correct` flag.
 </details>
 
 <details><summary><code>formatNeuralErrors.py</code></summary>
@@ -83,6 +78,19 @@ Below is an overview of the scripts located in the `src` directory:
  >- `field` which sorts alphabetically.
  >- `suffix` which sorts alphabetically from the end of the string.
  >- `number` which sorts based on the number value of a column.
+</details>
+
+<details><summary><code>counterSorter.py</code></summary>
+ 
+ >For a given file, either counts or sorts it and places the output in `CounterSorterOutput` by default.
+ >- If you are sorting, include an `s` or the word `sort` after the specified file.
+ >- If you are counting, include a `c` or the word `count` after the specified file.
+ >
+ >For either option, you may:
+ >- Specify a designated output file using the `-d` or `--dest` flag.
+ >- Specify a sorting function using the `-m` or `--method` flag and a key from the `SORT_FUNCTIONS` dictionary in `properties.py`.
+ >- Invert the sort direction using the `-r` or `--reverse` flag.
+ >- Ignore the header of the file using the `-s` or `--skip` flag and a number of lines to skip.
 </details>
 
 ## Using this repository
