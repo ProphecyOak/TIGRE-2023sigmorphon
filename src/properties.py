@@ -1,7 +1,7 @@
 SEGMENTATIONS_FOLDER = "../SegmentationsSplits"
 SHARED_TASK_DATA_FOLDER = "../SharedTaskData"
 NEURAL_OUTPUT_FOLDER = "../NeuralTransducerOutput"
-NEURAL_ERRORS_FOLDER = "../NeuralTransducerErrors"
+NEURAL_ERRORS_FOLDER = "../NeuralTransducerFormatted"
 COUNTER_SORTER_OUTPUT_FOLDER = "../CounterSorterOutput"
 
 SORT_FUNCTIONS = {
