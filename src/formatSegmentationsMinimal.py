@@ -22,21 +22,21 @@ def convertFile(lang,segmentationsFolder, forced):
 def generateSplit(lang, segmentationsFolder, splitsFolder):
     print(f"Generating {lang}.trn, {lang}.dev, and {lang}.tst")
     with open(f"{splitsFolder}/{lang}.trn", encoding="UTF-8") as trn:
-        trnSet = set([y[0] for y in [x.split("\t") for x in trn.read().strip().split("\n")]])
+        trnSet = [x.split("\t") for x in trn.read().strip().split("\n")]
     with open(f"{splitsFolder}/{lang}.dev", encoding="UTF-8") as dev:
-        devSet = set([y[0] for y in [x.split("\t") for x in dev.read().strip().split("\n")]])
+        devSet = [x.split("\t") for x in dev.read().strip().split("\n")]
     with open(f"{splitsFolder}/{lang}.tst", encoding="UTF-8") as tst:
-        tstSet = set([y[0] for y in [x.split("\t") for x in tst.read().strip().split("\n")]])
+        tstSet = [x.split("\t") for x in tst.read().strip().split("\n")]
 
     with (open(f"{segmentationsFolder}/{lang}.total", encoding="UTF-8") as tot,
-          open(f"{segmentationsFolder}/{lang}.trn", "w", encoding="UTF-8") as trn,
-          open(f"{segmentationsFolder}/{lang}.dev", "w", encoding="UTF-8") as dev,
-          open(f"{segmentationsFolder}/{lang}.tst", "w", encoding="UTF-8") as tst):
+          open(f"{segmentationsFolder}/{lang}.minimal.trn", "w", encoding="UTF-8") as trn,
+          open(f"{segmentationsFolder}/{lang}.minimal.dev", "w", encoding="UTF-8") as dev,
+          open(f"{segmentationsFolder}/{lang}.minimal.tst", "w", encoding="UTF-8") as tst):
         for x in tot.read().strip().split("\n"):
-            lemma = x.split("\t")[0]
-            if lemma in trnSet: trn.write(x+"\n")
-            if lemma in devSet: dev.write(x+"\n")
-            if lemma in tstSet: tst.write(x+"\n")
+            triple = x.split("\t")
+            if triple in trnSet: trn.write(x+"\n")
+            if triple in devSet: dev.write(x+"\n")
+            if triple in tstSet: tst.write(x+"\n")
 
 def main(parsedArgs):
     if parsedArgs.all:
