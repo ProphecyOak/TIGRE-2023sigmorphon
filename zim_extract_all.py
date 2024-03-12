@@ -45,7 +45,17 @@ while OK:
             for language in languages:
                 if (
                     language + u"</h2>" in body
-                    and u"Verb</h3>" in body
+                    and (
+                        u"Noun</h3>" in body
+                        or u"Verb</h3>" in body
+                        or u"Adjective</h3>" in body
+                        or u"Pronoun</h3>" in body
+                    )
+                    and (
+                        u"Conjugation" in body
+                        or u"Declension" in body
+                        or u"Inflection" in body
+                    )
                 ):
                     lemmatch = re.search('class="Latn headword".*?>(.*?)<', body)
                     if lemmatch:
