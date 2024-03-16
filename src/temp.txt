@@ -1,0 +1,52 @@
+file: ../SharedTaskData/fra.tst
+historical forms: 180	total forms: 1000	proportion: 18.0%
+historical lemmas: 9	total lemmas: 50	proportion: 18.0%
+
+file: ../SharedTaskData/fra.dev
+historical forms: 100	total forms: 1000	proportion: 10.0%
+historical lemmas: 5	total lemmas: 50	proportion: 10.0%
+
+file: ../SharedTaskData/fra.trn
+historical forms: 2142	total forms: 10000	proportion: 21.4%
+historical lemmas: 86	total lemmas: 400	proportion: 21.5%
+
+file: ../SharedTaskData/2023/fra.tst
+historical forms: 180	total forms: 1000	proportion: 18.0%
+historical lemmas: 9	total lemmas: 50	proportion: 18.0%
+
+file: ../SharedTaskData/2023/fra.dev
+historical forms: 100	total forms: 1000	proportion: 10.0%
+historical lemmas: 5	total lemmas: 50	proportion: 10.0%
+
+file: ../SharedTaskData/2023/fra.trn
+historical forms: 2142	total forms: 10000	proportion: 21.4%
+historical lemmas: 86	total lemmas: 400	proportion: 21.5%
+
+file: ../SharedTaskData/2017/french-dev.tsv
+historical forms: 194	total forms: 1000	proportion: 19.4%
+historical lemmas: 182	total lemmas: 940	proportion: 19.4%
+
+file: ../SharedTaskData/2017/french-covered-test.tsv
+historical forms: 206	total forms: 1000	proportion: 20.6%
+historical lemmas: 193	total lemmas: 943	proportion: 20.5%
+
+file: ../SharedTaskData/2017/french-train-high.tsv
+historical forms: 2045	total forms: 10000	proportion: 20.4%
+historical lemmas: 1146	total lemmas: 5588	proportion: 20.5%
+
+file: ../SharedTaskData/2019/french-train-high.tsv
+historical forms: 2052	total forms: 10000	proportion: 20.5%
+historical lemmas: 1139	total lemmas: 5559	proportion: 20.5%
+
+file: ../SharedTaskData/2018/french-dev.tsv
+historical forms: 221	total forms: 1000	proportion: 22.1%
+historical lemmas: 214	total lemmas: 948	proportion: 22.6%
+
+file: ../SharedTaskData/2018/french-test.tsv
+historical forms: 215	total forms: 1000	proportion: 21.5%
+historical lemmas: 203	total lemmas: 941	proportion: 21.6%
+
+file: ../SharedTaskData/2018/french-train-high.tsv
+historical forms: 2108	total forms: 10000	proportion: 21.1%
+historical lemmas: 1165	total lemmas: 5592	proportion: 20.8%
+

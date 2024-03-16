@@ -25,14 +25,14 @@ def encode_lemma(lem: str) -> str:
 
     return encoded
 
-def get_lemmas(langpath: str = None) -> set[str]:
+def get_lemmas(langpath: str = None, lemind: int = 0) -> set[str]:
     if not langpath: langpath = LANG_DEFAULT
     lem_set: set[str] = set()
 
     with open(langpath) as langfile:
         for line in langfile:
-            if line != '\n':
-                lem_set.add(line.strip().split('\t')[0])
+            if line != '\n' and line.strip().split('\t')[1] == 'V,NFIN':
+                lem_set.add(line.strip().split('\t')[lemind])
     
     return lem_set
 
@@ -40,12 +40,12 @@ def get_lem_pages(pgpath: str = None) -> list[str]:
     if not pgpath: pgpath = LEMPG_DEFAULT
     return [os.path.splitext(f)[0] for f in os.listdir(pgpath)]
 
-def get_lemma_langs(lem: str, lem_pgs: list[str], pgpath: str = None, target_lang: str = '') -> list[str]:
+def get_lemma_langs(lem: str, lem_pgs: list[str], pgpath: str = None, target_lang: str = '', open_url: bool = True) -> list[str]:
 
     if not pgpath: pgpath = LEMPG_DEFAULT
 
     have_data_flag = True
-    if lem not in lem_pgs:
+    if lem not in lem_pgs and open_url:
         have_data_flag = False
         encoded_lem = encode_lemma(lem)
 
@@ -55,6 +55,8 @@ def get_lemma_langs(lem: str, lem_pgs: list[str], pgpath: str = None, target_lan
             lempg.close()
         except:
             return ['URL Error']
+    elif not open_url:
+        return ['URL Error']
     else:
         with open(os.path.join(pgpath, lem+'.html')) as lempg:
             pgstr = lempg.read()
@@ -81,8 +83,8 @@ def get_args() -> argparse.Namespace:
 
     parser.add_argument('lang',
                         help='The name of the language to use, as written in English Wiktionary.')
-    parser.add_argument('langcode',
-                        help='The three-letter code used to refer to the language in unimorph schema')
+    parser.add_argument('langfpath',
+                        help='The path to the file containing language data')
     
     parser.add_argument('-w', '--wikt-path',
                         default=os.path.join('..','lemma_pages'),
@@ -101,9 +103,9 @@ def get_args() -> argparse.Namespace:
 
 def main():
     args = get_args()
-    LANG, CODE, WIKT, UNIM, OUT = args.lang, args.langcode, args.wikt, args.unim, args.out
+    LANG, LANGPATH, WIKT, UNIM, OUT = args.lang, args.langfpath, args.wikt, args.unim, args.out
 
-    lemmas = sorted(get_lemmas(langpath=os.path.join(UNIM, CODE)))
+    lemmas = sorted(get_lemmas(langpath=LANGPATH, lemind=0))
     lempgs = get_lem_pages(pgpath=os.path.join(WIKT, LANG))
 
     langsets: dict[str, set[str]] = {}
@@ -111,10 +113,10 @@ def main():
     if not os.path.isdir(OUT):
         os.makedirs(OUT)
     
-    outfile = open(os.path.join(OUT, f'{CODE}.filtered'), 'w')
+    outfile = open(os.path.join(OUT, f'{os.path.basename(LANGPATH)}.filtered'), 'w')
 
     for lem in tqdm(lemmas):
-        langs = get_lemma_langs(lem, lempgs, pgpath=os.path.join(WIKT, LANG), target_lang=LANG)
+        langs = get_lemma_langs(lem, lempgs, pgpath=os.path.join(WIKT, LANG), target_lang=LANG, open_url=True)
         if LANG not in langs:
             for lang in langs:
                 if not lang in langsets: langsets[lang] = set()
