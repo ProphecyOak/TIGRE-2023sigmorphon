@@ -1,4 +1,4 @@
-# Error Analysis of French Morphological Inflection Generators
+# Ye Olde French: Error Analysis of SIGMORPHON-UniMorph Shared Task Splits and Effect of Old and Middle French
 
 This project uses scripts designed to inflect lemmas based on morphosyntactic descriptions and aims to uncover patterns behind errors made my the various scripts made, in this case, when run on the French langauge. Our goal is to emphasize the role of high-quality training data, as well as recommend improved practices for scraping and collecting training data to be used for these tasks.
 
@@ -97,16 +97,3 @@ Below is an overview of the scripts located in the `src` directory:
  >- Invert the sort direction using the `-r` or `--reverse` flag.
  >- Ignore the header of the file using the `-s` or `--skip` flag and a number of lines to skip.
 </details>
-
-## Using this repository
-
-Instructions on how to run the scripts, options in terms of data manipulation, and the sequences of running the data, then sorting, then counting.
-
-### Necessary Libraries and Tools
-
-Libraries: sys, os, argparse, re, getopt, 
-Other libraries/tools that are helpful in viewing/manipulating this data: (MORE INFO NEEDED)
-
-```bash
-# Example command to install prerequisites
-pip install -r requirements.txt
