@@ -2,6 +2,10 @@
 
 This project uses scripts designed to inflect lemmas based on morphosyntactic descriptions and aims to uncover patterns behind errors made my the various scripts made, in this case, when run on the French langauge. Our goal is to emphasize the role of high-quality training data, as well as recommend improved practices for scraping and collecting training data to be used for these tasks.
 
+## Background
+
+This is a project pursued in an attempt to complete the  [SIGMORPHON2023 Inflection Shared Task](https://github.com/sigmorphon/2023InflectionST) part1 in regards to the French language.
+
 ## Directories
 
 The following are the folders found within the repository:
