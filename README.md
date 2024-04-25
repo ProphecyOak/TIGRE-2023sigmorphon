@@ -25,6 +25,9 @@ Holds segmentation splits, such as `fra.segmentations`, as well as generates spl
 - `SharedTaskData`
 Includes data used for shared tasks, like development (`fra.dev`), training (`fra.trn`), and testing (`fra.tst`) splits.
 
+- `plots_for_paper`
+Contains R code and output for generating Figure 1 in SIGMORPHON 2024 paper (and related figures not included in paper)
+        
 - `src`
 Source code directory containing scripts for various operations such as error analysis, data formatting, error counting, etc.
 
@@ -33,12 +36,12 @@ Source code directory containing scripts for various operations such as error an
 Below is an overview of the scripts located in the `src` directory:
 
 <details><summary><code>reproduce.sh</code></summary>
- 
+
  >Reproduces the data that was annotated for use in the paper.
 </details>
 
 <details><summary><code>errorSummation.py</code></summary>
- 
+
  >Takes a set of output files and merges them together by form. Make sure that both files have all the same forms in the same order. You must list a number for the index for the column with the predicted form and the number of lines to skip for a header following each file. You may:
  >- Specify the split to check your words against using the `-s` or `--split` flag.
  >- Specify the output file using the `-o` or `--output` flag.
@@ -48,26 +51,26 @@ Below is an overview of the scripts located in the `src` directory:
 </details>
 
 <details><summary><code>formatNeuralErrors.py</code></summary>
- 
+
  >Takes the output files placed in `NeuralTransducerOutput` and converts them to a format that is more human readable and is usable for `errorSummation.py` and places the new file into the `NeuralTransducerFormatted` folder. You may:
  >- Specify a designated input directory using the `-p` or `--path` flag.
  >- Specify a designated output directory using the `-d` or `--dest` flag.
 </details>
 
 <details><summary><code>formatSegmentations.py</code></summary>
- 
+
  >Takes the `.segmentations` files placed in `SegmentationsSplits` and converts them to match the shared task data format. It then uses the splits in `SharedTaskData` to create new splits in the same directory that have similar demographics but only include words in the `.segmentations` files. You may:
  >- Specify a designated input directory for the `.segmentations` files using the `-p` or `--path` flag.
  >- Specify a designated input directory for the original shared task splits using the `-o` or `--original` flag.
  >- Force the recreation of the `.total` file using the `-f` or `--force` flag (Normally, if the `.total` file is present, it will skip that step).
  >
- >And either: 
+ >And either:
  >- Specify a language to convert using the `-l` or `--lang` flag with the UniMorph abbreviation.
  >- ~~Run all files using the `-a` or `--all` flag.~~ \[Not Yet Implemented\]
 </details>
 
 <details><summary><code>nonneural.py</code></summary>
- 
+
  >This is the baseline `nonneural.py` taken from the [Sigmorphon 2023 Shared Task Repo](https://github.com/sigmorphon/2023InflectionST). It has been modified to use the argparse module and to create separate output files for the different splits. You may:
  >- Specify a designated input directory using the `-p` or `--path` flag.
  >- Run it on the test split using the `-t` or `--test` flag.
@@ -75,7 +78,7 @@ Below is an overview of the scripts located in the `src` directory:
 </details>
 
 <details><summary><code>properties.py</code></summary>
- 
+
  >Contains default paths and settings for the project. The following properties are defined:
  >- `SEGMENTATIONS_FOLDER = "../SegmentationsSplits"`
  >- `SHARED_TASK_DATA_FOLDER = "../SharedTaskData"`
@@ -90,7 +93,7 @@ Below is an overview of the scripts located in the `src` directory:
 </details>
 
 <details><summary><code>counterSorter.py</code></summary>
- 
+
  >For a given file, either counts or sorts it and places the output in `CounterSorterOutput` by default.
  >- If you are sorting, include an `s` or the word `sort` after the specified file.
  >- If you are counting, include a `c` or the word `count` after the specified file.
