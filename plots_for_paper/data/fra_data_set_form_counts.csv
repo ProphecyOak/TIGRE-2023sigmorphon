@@ -1,0 +1,4 @@
+Data set,Original,Segmentations,Segmentations-Minimal
+fra.trn,10000,15890,6407
+fra.dev,1000,2265,754
+fra.tst,1000,2101,701
